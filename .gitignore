@@ -1,0 +1,6 @@
+.DS_Store
+blog/__init__.py
+blog/__pycache__
+blog/migrations
+mysite/__init__.py
+mysite/__pycache__

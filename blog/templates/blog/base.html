@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Blog</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- Medium Style Editor -->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Russo+One&display=swap" rel="stylesheet">
+    <!-- font-family: 'Montserrat', sans-serif;
+         font-family: 'Russo One', sans-serif;
+    -->
+
+  </head>
+  <body class="loader">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light techfont custom-navbar">
+
+      <div class="navbar-nav">
+        <a class="navbar-brand" href="{% url 'blog:post_list' %}">My Blog</a>
+        <a class="nav-item nav-link" href="https://www.github.com">Github</a>
+        <a class="nav-item nav-link" href="https://www.linkedin.com">LinkedIn</a>
+        <a class="nav-item nav-link" href="/admin/">Admin</a>
+      </div>
+
+      <div class="navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+        <a class="nav-item nav-link" href="{% url 'blog:post_new' %}">New Post</a>
+        <a class="nav-item nav-link" href="{% url 'blog:post_draft_list' %}">Drafts</a>
+        <a class="nav-item nav-link" href="{% url 'blog:logout' %}">Log Out</a>
+        <a class="nav-item nav-link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome:  {{user.username}}</a>
+
+        {% else %}
+        <a class="nav-item nav-link" href="{% url 'blog:login' %}">Login </a>
+        {% endif %}
+        <a class="nav-item nav-link" href="{% url 'blog:about' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About</a>
+      </div>
+    </nav>
+
+    <!-- CONTENT BLOCK -->
+    <div class="content container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="blog_posts">
+            {% block content %}
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

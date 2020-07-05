@@ -6,3 +6,4 @@ Includes:  Django and Bootstrap
 Preliminary implementation
 
  - Test addition
+ * Second addition
